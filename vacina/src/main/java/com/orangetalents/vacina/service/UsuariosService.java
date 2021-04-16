@@ -33,8 +33,11 @@ public class UsuariosService {
         if(cpfExistente.isPresent() && emailExistente.isPresent()) {
             return Optional.empty();
         }if(vacinaExistente.isPresent() && postoExistente.isPresent()) {
+        	vacinaExistente.get().setDataAplicacao(new java.sql.Date(System.currentTimeMillis()));
+        	postoExistente.get().setEstoque(postoExistente.get().getEstoque()-1);
         	usuario.setVacinadoCom(vacinaExistente.get());
         	usuario.setVacinadoEm(postoExistente.get());
+        	
         }
         return Optional.ofNullable(repository.save(usuario));
     }

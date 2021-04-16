@@ -5,10 +5,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.orangetalents.vacina.model.Estoque;
 import com.orangetalents.vacina.model.Postos;
 import com.orangetalents.vacina.model.Vacinas;
-import com.orangetalents.vacina.repository.EstoqueRepository;
 import com.orangetalents.vacina.repository.PostosRepository;
 import com.orangetalents.vacina.repository.VacinasRepository;
 
@@ -19,15 +17,17 @@ public class PostosService {
 	private PostosRepository postosRepository;
 	@Autowired
 	private VacinasRepository vacinasRepository;
-	@Autowired
-	private EstoqueRepository estoqueRepository;
-	
-	/*public Optional<Postos> alterarEstoque (Estoque estoque){
-		Optional<Vacinas> existente = vacinasRepository.findById(estoque.getId());
+		
+	public Postos cadastrarPosto (Postos posto, Long idVacina, int estoque){
+		Optional<Vacinas> existente = vacinasRepository.findById(idVacina);
+		Postos cadastro = postosRepository.save(posto);
 		if(existente.isPresent()) {
-			return existente.get().setEstoque(estoque.getEstoque());
+			cadastro.getVacinasDisponiveis().add(existente.get());
+			cadastro.setEstoque(estoque);
 		}
-		return null;
-	}*/
-
+	
+		return postosRepository.save(cadastro);
+	}
 }
+
+

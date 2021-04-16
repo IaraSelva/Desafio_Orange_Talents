@@ -4,19 +4,18 @@ package com.orangetalents.vacina.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 
-import com.sun.istack.NotNull;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Entity
@@ -30,15 +29,17 @@ public class Vacinas {
 	@NotEmpty
 	private String nomeVacina;
 	
-	@NotNull
 	@Temporal(TemporalType.DATE)
 	private Date dataAplicacao;
 		
+	
 	@OneToMany(mappedBy = "vacinadoCom")
+	@JsonIgnoreProperties("vacinadoCom")
 	private List<Usuarios> usuario = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "vacina")
-	Set<Estoque> estoque;
+	@ManyToMany(mappedBy = "vacinasDisponiveis")
+	@JsonIgnoreProperties({"vacinasDisponiveis", "usuarios"})
+	private List<Postos> disponivelEm = new ArrayList<>();
 
 	
 	public Long getIdVacina() {
@@ -73,12 +74,12 @@ public class Vacinas {
 		this.usuario = usuario;
 	}
 
-	public Set<Estoque> getEstoque() {
-		return estoque;
+	public List<Postos> getDisponivelEm() {
+		return disponivelEm;
 	}
 
-	public void setEstoque(Set<Estoque> estoque) {
-		this.estoque = estoque;
+	public void setDisponivelEm(List<Postos> disponivelEm) {
+		this.disponivelEm = disponivelEm;
 	}
 
 }

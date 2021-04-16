@@ -41,7 +41,7 @@ public class Usuarios {
 	
 	@ManyToOne
 	@JoinColumn(name = "posto")
-	@JsonIgnoreProperties("usuarios")
+	@JsonIgnoreProperties({"usuarios", "vacinasDisponiveis"})
 	private Postos vacinadoEm;
 	
 
