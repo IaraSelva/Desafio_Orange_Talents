@@ -1,5 +1,6 @@
 package com.orangetalents.vacina.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -27,7 +28,7 @@ public class Postos {
 	
 	
 	@OneToMany(mappedBy = "vacinadoEm")
-	private List<Usuarios> usuarios;
+	private List<Usuarios> usuarios = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "posto")
 	Set<Estoque> estoque;

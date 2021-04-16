@@ -1,7 +1,9 @@
 package com.orangetalents.vacina.model;
 
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -9,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -33,8 +34,8 @@ public class Vacinas {
 	@Temporal(TemporalType.DATE)
 	private Date dataAplicacao;
 		
-	@OneToOne(mappedBy = "vacinadoCom")
-	private Usuarios usuario;
+	@OneToMany(mappedBy = "vacinadoCom")
+	private List<Usuarios> usuario = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "vacina")
 	Set<Estoque> estoque;
@@ -64,11 +65,11 @@ public class Vacinas {
 		this.dataAplicacao = dataAplicacao;
 	}
 
-	public Usuarios getUsuario() {
+	public List<Usuarios> getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(Usuarios usuario) {
+	public void setUsuario(List<Usuarios> usuario) {
 		this.usuario = usuario;
 	}
 
