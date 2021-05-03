@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <!-- Meta tags Obrigatórias -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/styles/style.css">
+  <title>Spring</title>
+</head>
+
+<body class="container-fluid">
+
+  <!--Menu-->
+  <div class="header">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-success bg-dark">
+      <a class="navbar-brand" href="#">
+        <img src="assets/images/spring_logo" width="80" height="40" alt="">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
+        aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="https://start.spring.io/" target="_blank">Spring Initializr</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.mysql.com/downloads/" target="_blank">My SQL</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.eclipse.org/downloads/" target="_blank">Eclipse</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Quem Escreve
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#contato">Contato</a>
+              <a class="dropdown-item" href="#sobre">Sobre Mim</a>
+            </div>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Navegue na API
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#dependencias">Dependências</a>
+              <a class="dropdown-item" href="#models">Models</a>
+              <a class="dropdown-item" href="#repository">Repository</a>
+              <a class="dropdown-item" href="#service">Service</a>
+              <a class="dropdown-item" href="#controller">Controller</a>
+              <a class="dropdown-item" href="#codigo">Código-fonte</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Informações Oficiais
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#video">Sobre a Vacina</a>
+              <a class="dropdown-item"
+                href="https://www.who.int/pt/news-room/feature-stories/detail/how-do-vaccines-work?adgroupsurvey={adgroupsurvey}&gclid=CjwKCAjwm7mEBhBsEiwA_of-TPzvi-VwxjGifmsDRIHzFmIS5ITcpYwwUDOUQUfiSLmMCLWnWkQnJhoCB9IQAvD_BwE"
+                target="_blank">OMS</a>
+              <a class="dropdown-item"
+                href="https://www.gov.br/saude/pt-br?utm_source=google&utm_medium=search&utm_campaign=MS_Vacinacao_Covid&utm_term=vacinacao_coronavirus_googleads&utm_content=gads001"
+                target="_blank">Ministério da Saúde</a>
+              <a class="dropdown-item" href="https://www.vacinaja.sp.gov.br/" target="_blank">Governo de São Paulo</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <!--/Menu-->
+
+
+  <!--Título-->
+  <div class="jumbotron jumbotron-fluid" style="background-color: #b3e0ab;">
+    <hr>
+    <h1 class="display-4 text-center">Construindo uma API Rest em Java com Spring </h1>
+    <hr class="my-4">
+    <p class="lead text-center">Hoje vamos construir uma API para cadastramento de vacinas e pessoas a serem
+      vacinadas.
+    </p>
+
+  </div>
+  <div class="container">
+    <p class="text-right">Estou trabalhando com a versão 11 do Java</p>
+    <div class="d-flex justify-content-end">
+      <a class="btn btn-outline-success btn-sm text-right"
+        href="https://www.oracle.com/br/java/technologies/javase-jdk11-downloads.html" target="_blank"
+        role="button">Baixe Aqui</a>
+    </div>
+  </div>
+  <!--/Título-->
+
+  <!--Corpo-->
+  <div class="text-center">
+    <hr>
+    <h4>Vamos lá!</h4>
+    <br>
+    <p>Primeiramente, é importante visualizar quais dados queremos e
+      julgamos importantes para esse sistema de cadastros.
+      <b>O objetivo é fazer um cadastramento de vacinas, postos de saúde e usuários.</b>
+    </p>
+    <p>Vamos começar construindo um diagrama para visualizar as
+      informações e relações entre as entidades:</p>
+
+    <div class="row align-items-center">
+
+      <div class="col md-6">
+        <p style="font-size: 12px;">*obs. Estou usando o banco de dados MySQL</p>
+        <img class="w-440 h-360 w-250 h-200" src="assets/images/diagrama_vacina_usuarios_postos.png" alt="">
+      </div>
+
+      <div style="font-size: 14px;" class="col md-6">
+        <p>
+          Aqui visualizamos todas as tabelas do nosso sistema e as relações que faremos entre elas.
+          <br>
+          Um mesmo tipo de vacina poderá ser aplicada em vários usuários(<i>relação muitos pra um</i>). Mas cada
+          usuário, tomará uma única vacina(<i>relação um pra muitos</i>)
+          <br>
+          E cada usuário será direcionado a um dos postos disponíveis<i>(relação muitos pra um)</i>, sendo que cada
+          posto poderá receber vários usuários<i>(um pra muitos)</i>
+          -sem aglomeração 😄.
+          <br>
+          Por sua vez, os postos podem receber diversos tipos de vacinas; e esses diversos tipos de vacinas também
+          poderão
+          estar em vários postos<i>(relação muitos pra muitos)</i>.
+
+          Isso é importante para fazermos as relações entre as entidades.
+        </p>
+
+      </div>
+
+    </div>
+    <br>
+    <div class="container-fluid">
+      <p id="dependencias">O próximo passo será baixar nosso projeto Spring no Spring Initializr.
+        Para acessar, é só clicar na barrinha de menu aqui da página. ↖</p>
+
+      <img class="w:-640 h-360 w-250 h-150" src="assets/images/spring_init.png" alt="">
+
+      <p>As dependências que vamos usar neste projeto são:</p>
+      <li>
+        ↪ Web e DevTools para construirmos nossa aplicação Web;
+      </li>
+      <li>
+        ↪ JPA para implementar o Java Persistence ao projeto;
+      </li>
+      <li>
+        ↪ MySQL pois é o banco de dados que estou usando pra testar o projeto;
+      </li>
+      <li>
+        ↪ Validation para o Hibernate validar e persistir os dados no nosso banco.
+      </li>
+      <br>
+      <p>Baixado e descompactado o arquivo, vou importá-lo pra minha IDE (no caso estou
+        utilizando o Eclipse)</p>
+
+      <p>Vamos começar criando nossas Models, que abrigarão nossas entidades(tabelas).</p>
+
+
+      <img class="w-250" src="assets/images/packages.png" alt="">
+
+      <p style="font-size: 14px;">Dentro do projeto, em 'src/main/java', crie um package 'Models'.<br> O caminho será
+        sempre o mesmo para todos os
+        outros tipos de classes que vamos criar</p>
+
+      <h1 id="models"></h1>
+      <p>Para criação das <i>models</i>, precisamos sempre ter em mente nosso <a href="#diagrama">diagrama</a>.
+        Pois ele será a base para a criação dos nossos atributos e dos relacionamentos entre as entidades.
+        Criamos cada model com seus atributos e as notações de cada relação. O que no banco é representado pelas chaves
+        estrangeiras, aqui é representado pelas notações <a href="https://www.baeldung.com/hibernate-one-to-many"
+          target="_blank">@OneToMany, @ManyToOne</a> e <a href="https://www.baeldung.com/jpa-many-to-many"
+          target="_blank">@ManyToMany</a>.
+      </p>
+      <br>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <img id="tabela" height="300px" src="assets/images/vacinas_model.png" alt="">
+          <p style="font-size: 14px;">Na classe <i>Vacinas</i>, a relação com <i>Postos</i> do tipo @ManyToMany. E a
+            relação com <i>Usuários</i> do tipo @OneToMany. A notação <i>'mappedBy'</i> serve para mapear o respectivo
+            atributo na classe correspondente.</p>
+        </div>
+        <div class="col">
+          <img id="tabela" height="350px" src="assets/images/usuarios_model.png" alt="">
+          <p style="font-size: 14px;">Na classe <i>Usuarios</i> a relação com <i>Vacinas</i> e <i>Postos</i> do tipo
+            @OneToMany</p>
+        </div>
+        <div class="col">
+          <img id="tabela" height="300px" src="assets/images/postos_model.png" alt="">
+          <p style="font-size: 14px;">Em <i>Postos</i>, a relação com <i>Usuarios</i> do tipo @OneToMany. Vamos nos
+            atentar à relação com <i>Vacinas</i>. Aqui, a relação gera uma nova tabela (decidi chamar de estoque) que
+            abrigará os IDs das duas classes, fazendo a junção das entidades e retornando a relação quando consultada.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <p id="repository">
+        Nosso objetivo é criar três tipos de cadastro: vacinas, postos e usuários.
+        Para isso, vamos criar as classes controller para inserir os end-points.
+        <br>
+        As classes controller, precisam receber a injeção de dependência do JPA. Para isso, vamos
+        criar <b>interfaces</b> do tipo <i>Repository</i> para estender a JPA. Assim:
+      </p>
+      <img class="w-250 h-75" src="assets/images/vacinas_repository.png" alt="">
+      <p>O mesmo deve ser feito para <i>Postos</i> e <i>Usuarios</i>.</p>
+
+      <p>Agora, podemos fazer a injeção de dependência (com a notação @Autowired) no controller
+        e criar nosso endpoint.
+      </p>
+      <img class="w-640 h-360 w-250 h-75" src="assets/images/vacinas_controller.png" alt="">
+
+      <p>
+        Foi criado um endpoint simples para cadastro (@Post), requerendo os dados da vacina no
+        corpo da requisição e retornando o status 201 created.
+        <br>
+        Para usuários, queremos assegurar que não exista mais de um cadastro para o mesmo
+        usuário, por isso, definiremos que o CPF e o e-mail devem ser únicos. E como faremos
+        isso?
+        <br>
+        Para deixar o código mais organizado, optei por fazer uma classe de service para
+        implementar essa regra de negócio.
+        <br>
+        Antes de partir para o service, vamos implementar dois métodos de busca no nosso
+        repositório, por email e por CPF:
+      </p>
+      <img class="w-250 h-75" src="assets/images/usuarios_repository.png" alt="">
+      <h1 id="service"></h1>
+      <p>Agora podemos definir nossa regra de negócio:</p>
+      <img class="w-540 h-320 w-250 h-150" src="assets/images/usuarios_service.png" alt="">
+      <p>
+        O <a href="https://medium.com/@racc.costa/optional-no-java-8-e-no-java-9-7c52c4b797f1"
+          target="_blank">Optional</a> é uma boa ferramenta para ser utilizada nesse caso, pois ele fará uma
+        verificação e retornará o dado solicitado. Através dele, vamos verificar se dentre os
+        usuários, já há algum CPF ou e-mail iguais aos que estamos tentando cadastrar.
+        Caso exista, o retorno será vazio e evitamos cadastro duplicado.
+        Caso não exista, vamos salvar a nova requisição de usuário.
+        Os usuários serão cadastrados associados à vacina que tomaram e ao posto onde esta foi aplicada.
+        Sendo assim, faremos a verificação também de postos e vacinas.
+        Caso a vacina e o posto estejam cadastrados, será feito um decréscimo no estoque.
+        Também defini que a data de aplicação seja gerada automaticamente.
+      </p>
+      <h1 id="controller"></h1>
+      <p>Nosso endpoint no controller ficará assim:</p>
+      <img class="w-250 h-180" src="assets/images/usuarios_controller.png" alt="">
+      <p>Caso haja tentativa de cadastro com dados já existentes, o retorno será 400 bad request.
+        Caso seja um novo usuário, ele será cadastrado, retornando 201 created.</p>
+      <br>
+      <p>Resta criar o end-point para cadastramento de postos. Vamos começar criando nossa regra de negócio:</p>
+      <img id="img" class="w-250 h-100" src="assets/images/postos_service.png" alt="">
+      <p>Aqui faremos uma verificação se existe cadastro da vacina informada. Caso positivo, será feito o cadastro do
+        posto, <i>'setando'</i> o estoque da vacina.</p>
+      <p>Nosso endpoint ficará assim:</p>
+      <img id="img" class="w-640 h-360 w-250 h-75" src="assets/images/postos_controller.png" alt="">
+      <br>
+      <p id="codigo">
+        Com esse sisteminha, já conseguimos fazer um cadastramento simples, porém funcional e integrado, de vacinas,
+        postos e usuários.
+        É possível pensar em inúmeras outras formas de incrementar esse sistema.
+        Se tiver outras ideias, sugestões, comentários, dúvidas, escreva pra mim! 😉
+      </p>
+      <p>
+        Acesse o código fonte do projeto: <a href="https://github.com/IaraSelva/Desafio_Orange_Talents"
+          target="_blank"><img height="30px" width="30px" src="assets/images/GitHub-Mark.png" alt=""></a>
+      </p>
+      <p id="video">E por falar em vacina, vamos à informações oficiais sobre a vacinação contra COVID-19! </p>
+
+      <hr>
+      <h4 style="font-family:Georgia, 'Times New Roman', Times, serif;">Tire suas Dúvidas sobre a Vacina</h4>
+      <iframe class="w-250 h-150" width="560" height="315"
+        src="https://www.youtube.com/embed/videoseries?list=PLXKRd5kQJft-Mza8sg3hsZiee9xRe_WC6"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+      <hr>
+    </div>
+
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col">
+          <h1 id="sobre"></h1>
+          <img id="profile" src="assets/images/perfil.jpg" alt="">
+
+          <p style="font-family: Verdana, Geneva, Tahoma, sans-serif;">Meu nome é Iara, mas pode me chamar de Iaiá. Sou
+            uma constante aprendiz querendo descobrir o sentido da vida, do universo e tudo mais.
+            Pra começar sou atriz de teatro, cantora, amante dos animais, vegana e cozinho muito bem!
+            Minha motivação é resolver problemas e pensar em soluções criativas.
+            Desenvolvedora FullStack Java Jr., sedenta por aprender e trocar com outras pessoas.
+            A tecnologia se tornou uma nova paixão e quem sabe agora consigo chegar na resposta da grande pergunta
+            inicial... Afinal, tudo começa com um:
+          </p>
+          <p style="font-family: 'Courier New', Courier, monospace; color: purple;">public static void main(String[]
+            args){
+            <br>System.out.println("Hello World!")}
+          </p>
+
+        </div>
+        <div class="col">
+          <h4 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" id="contato">Sigam-me os
+            bons!</h4>
+          <a href="https://github.com/IaraSelva" target="_blank"><img id="git" src="assets/images/git.png" alt=""></a>
+          <a href="https://www.linkedin.com/in/iara-cristina-silva/" target="_blank"><img id="lkd"
+              src="assets/images/linkedin-icon.png" alt=""></a>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+    <footer style="background-color: gray; font-size: 14px;">
+      <p>© O conteúdo postado aqui serve unicamente para pesquisa e estudo. Devendo ser feitas as devidas referências
+        caso
+        haja citação externa.</p>
+    </footer>
+
+  </div>
+
+  <!--/Corpo-->
+
+
+
+  <!-- JavaScript (Opcional) -->
+  <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
